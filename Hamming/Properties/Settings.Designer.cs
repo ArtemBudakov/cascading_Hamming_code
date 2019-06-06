@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hamming.Properties
+namespace Hamm.Properties
 {
 
 

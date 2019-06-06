@@ -1,0 +1,9 @@
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csprojAssemblyReference.cache
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.Properties.Resources.resources
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csproj.GenerateResource.cache
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
+C:\GIT\cascading_Hamming_code\Hamm\bin\Debug\Hamm.exe.config
+C:\GIT\cascading_Hamming_code\Hamm\bin\Debug\Hamm.exe
+C:\GIT\cascading_Hamming_code\Hamm\bin\Debug\Hamm.pdb
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.exe
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.pdb
