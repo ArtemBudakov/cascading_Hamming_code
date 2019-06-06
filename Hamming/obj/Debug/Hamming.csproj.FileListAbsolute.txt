@@ -1,0 +1,10 @@
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe.config
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamming.pdb
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csprojAssemblyReference.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Properties.Resources.resources
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.GenerateResource.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
