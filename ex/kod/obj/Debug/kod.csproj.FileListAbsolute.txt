@@ -10,3 +10,10 @@ D:\портафино\C#\код хэмминга\kod\Hamming-code\kod\bin\Debug\
 D:\портафино\C#\код хэмминга\kod\Hamming-code\kod\obj\Debug\kod.csprojResolveAssemblyReference.cache
 D:\портафино\C#\код хэмминга\kod\Hamming-code\kod\obj\Debug\kod.exe
 D:\портафино\C#\код хэмминга\kod\Hamming-code\kod\obj\Debug\kod.pdb
+C:\GIT\cascading_Hamming_code\ex\kod\bin\Debug\kod.exe.config
+C:\GIT\cascading_Hamming_code\ex\kod\bin\Debug\kod.exe
+C:\GIT\cascading_Hamming_code\ex\kod\bin\Debug\kod.pdb
+C:\GIT\cascading_Hamming_code\ex\kod\obj\Debug\kod.csprojAssemblyReference.cache
+C:\GIT\cascading_Hamming_code\ex\kod\obj\Debug\kod.csproj.CoreCompileInputs.cache
+C:\GIT\cascading_Hamming_code\ex\kod\obj\Debug\kod.exe
+C:\GIT\cascading_Hamming_code\ex\kod\obj\Debug\kod.pdb
