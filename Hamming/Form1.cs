@@ -24,15 +24,7 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<int> mes = new List<int>();
-            int i = 0;
-            foreach (char ch in textBox1.Text)
-            {
-                mes.Insert(i, ch);
-                i++;
-            }
- 
-
+            List<int> numbers = new List<int>();
         }
     }
 }
