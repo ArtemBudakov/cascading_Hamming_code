@@ -14,10 +14,15 @@ namespace Hamming
     public class conversion
     {
         public string messege;
+        public string word;
 
         public conversion (string messege)
         {
-            MessageBox.Show("whaAAT");
+            for(int i=0; i<messege.Length; i++)
+            {
+                word += Convert.ToString(messege[i], 2);
+                //MessageBox.Show(word.ToString());
+            }
         }
     }
     
