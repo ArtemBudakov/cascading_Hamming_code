@@ -15,3 +15,6 @@ H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\o
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe.config
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\bin\Debug\Hamming.pdb
