@@ -11,9 +11,6 @@ namespace Hamming
         string str = "";
         public encode()
         {
-<<<<<<< HEAD
-            //List<int> mes = new List<int>();
-=======
 
             List<int> mes = new List<int> { 1, 0, 1, 0 };
             List<int> encode_mes = new List<int>();
@@ -40,7 +37,6 @@ namespace Hamming
 
 
 
->>>>>>> dev
         }
 
     }
