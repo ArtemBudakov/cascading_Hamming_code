@@ -10,7 +10,7 @@ namespace Hamming
     {
         public encode(string mes)
         {
-            List<int> mes = new List<int>();
+            //List<int> mes = new List<int>();
         }
     }
 }
