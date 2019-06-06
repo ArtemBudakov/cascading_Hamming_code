@@ -8,3 +8,10 @@ E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.GenerateResource.
 E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
 E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
 E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csprojAssemblyReference.cache
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Properties.Resources.resources
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.GenerateResource.cache
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
