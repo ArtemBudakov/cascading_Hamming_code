@@ -14,8 +14,8 @@ namespace Hamming
 
             List<int> mes = new List<int> { 1, 0, 1, 0 };
             List<int> encode_mes = new List<int>();
-           // int i = 0;
-            int j = 2;
+            // int i = 0;
+
             //str = str.Insert(0, "X").Insert(1, "X");
             /*
                         foreach (int mesbit in mes)
@@ -26,16 +26,13 @@ namespace Hamming
                             if (i == (Math.Pow(2, j))) str = str.Insert(i - 1, "X");
                         }
                         */
+            int j = 3;
             encode_mes = mes;
-            for (int i = 4; i <= mes.Capacity; j++)
+            encode_mes.Insert(0, 2);
+            encode_mes.Insert(1, 2);
+            for (int i = 4; i < mes.Capacity; j++, i = (int)Math.Pow(2, j))
             {
-                if (i == (Math.Pow(2, j)))
-                {
-                    encode_mes.Add(0);
-                    j++;
-                }
-                    encode_mes.Add(mes[i]);
-
+                encode_mes.Insert(i-1,2);
             }
 
 
