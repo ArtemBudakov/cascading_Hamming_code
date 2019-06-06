@@ -15,3 +15,13 @@ H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\o
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csprojAssemblyReference.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Properties.Resources.resources
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.GenerateResource.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.csproj.CoreCompileInputs.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.exe
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.pdb
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe.config
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamming.exe
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamming.pdb
