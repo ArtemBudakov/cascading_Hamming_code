@@ -12,10 +12,7 @@ namespace Hamming
         {
             List<int> mes = new List<int>();
         }
-        while 
-        {
-        sdfdsfsd;
-        }
+
     }
 }
 
