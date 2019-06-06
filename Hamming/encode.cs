@@ -16,6 +16,10 @@ namespace Hamming
         {
         sdfdsfsd;
         }
+        while 
+        {
+        sdfdsfsd;
+        }
     }
 }
 
