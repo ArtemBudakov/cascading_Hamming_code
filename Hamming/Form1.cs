@@ -16,21 +16,18 @@ namespace Hamming
         {
             InitializeComponent();
         }
+        private conversion information;
+        public string messege;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             listBox1.Text = "";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
-            List<int> mes = new List<int>();
-            int i = 0;
-            foreach (char ch in textBox1.Text)
-            {
-                mes.Insert(i, ch);
-                i++;
-            }
+            //messege = textBox1.Text;
+            conversion hello = new conversion(textBox1.Text);
         }
     }
 }
