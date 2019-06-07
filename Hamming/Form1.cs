@@ -16,6 +16,7 @@ namespace Hamming
         {
             InitializeComponent();
         }
+        public conversion conv;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -24,8 +25,9 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-            encode enc = new encode();
-            conversion hello = new conversion(textBox1.Text);
+           // encode enc = new encode();
+            conversion bitMask = new conversion();
+            bitMask.GetBitMask(textBox1.Text);
 
         }
     }
