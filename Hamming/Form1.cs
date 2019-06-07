@@ -25,10 +25,8 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-            encode enc = new encode();
-            //conversion hello = new conversion(textBox1.Text);
-            this.conv = new conversion(textBox1.Text);
-            this.conv.Transfer();
+           // encode enc = new encode();
+            conversion hello = new conversion(textBox1.Text);
         }
     }
 }
