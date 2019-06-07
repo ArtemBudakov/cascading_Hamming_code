@@ -21,13 +21,22 @@ namespace Hamming
         private void Form1_Load(object sender, EventArgs e)
         {
             listBox1.Text = "";
+            ///////////
+
+            ////////////////
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
            // encode enc = new encode();
             conversion bitMask = new conversion();
             bitMask.GetBitMask(textBox1.Text);
+=======
+            encode enc = new encode();
+            conversion hello = new conversion(textBox1.Text);
+            
+>>>>>>> dev
 
         }
     }
