@@ -12,10 +12,10 @@ namespace Hamming
         public encode()
         {
 
-            List<int> mes = new List<int> { 1, 0, 1, 0 };
-            List<int> encode_mes = new List<int> { 1,2,3,4,5,6,7};
+            List<int> mes = new List<int> { 1, 1, 1, 1 };
+            List<int> encode_mes = new List<int>();
 
-           /* int j = 0;
+            int j = 0;
 
             encode_mes = mes;
 
@@ -25,9 +25,8 @@ namespace Hamming
                 encode_mes.Insert(i-1,0);
                 conBit++;
             }
-            */
+            
             int cbit = 0;
-            conBit = 2;
             
             while(conBit >= 0)
             {
@@ -38,6 +37,7 @@ namespace Hamming
                         cbit += encode_mes[i-1];
                     }
                 conBit--;
+                encode_mes[pb - 1] = cbit % 2;
                 cbit = 0;
             }
 
