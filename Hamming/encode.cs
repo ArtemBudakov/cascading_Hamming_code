@@ -12,7 +12,7 @@ namespace Hamming
         public encode()
         {
 
-            List<int> mes = new List<int> { 1, 1, 1, 1 };
+            List<int> mes = new List<int> { 1, 0, 1, 0 };
             List<int> encode_mes = new List<int>();
 
             int j = 0;
@@ -42,6 +42,14 @@ namespace Hamming
             }
 
 
+            
+        }
+
+        public void decoding ()
+        {
+            List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
+
+            int a = mes.Capacity;
 
         }
 
