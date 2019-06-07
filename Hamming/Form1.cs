@@ -26,10 +26,19 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-           // encode enc = new encode();
-            conversion bitMask = new conversion();
-            bitMask.GetBitMask(textBox1.Text);
+            if (textBox1.Text != "")
+            {
+                // encode enc = new encode();
+                conversion bitMask = new conversion();
+                bitMask.GetBitMask(textBox1.Text);
+            }
+            else MessageBox.Show("вветите сообшение");
 
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!((e.KeyChar >= ' ' && e.KeyChar <= 'z') || e.KeyChar == 8)) { e.Handled = true; }
         }
     }
 }
