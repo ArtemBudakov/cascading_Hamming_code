@@ -28,7 +28,7 @@ namespace Hamming
         {
             if (textBox1.Text != "")
             {
-                // encode enc = new encode();
+                 encode enc = new encode();
                 conversion bitMask = new conversion();
                 bitMask.GetBitMask(textBox1.Text);
             }

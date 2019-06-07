@@ -12,14 +12,14 @@ namespace Hamming
         public encode()
         {
 
-            List<int> mes = new List<int> { 1, 0, 1, 0 };
+            List<int> mes = new List<int> { 1, 0, 1, 0, 1, 0, 1, 0,1,0,1,0,1,0,1,0};
             List<int> encode_mes = new List<int>();
 
             int j = 0;
 
             encode_mes = mes;
 
-            for (int i = 1; i < mes.Capacity; j++, i = (int)Math.Pow(2, j))
+            for (int i = 1; i < mes.Count; j++, i = (int)Math.Pow(2, j))
             {
 
                 encode_mes.Insert(i-1,0);
@@ -31,9 +31,10 @@ namespace Hamming
             while(conBit >= 0)
             {
                 int pb = (int)Math.Pow(2, conBit);
-                for (int i = pb; i <= encode_mes.Capacity; i += pb)
+                for (int i = pb; i <= encode_mes.Count; i += pb)
                     for (int p = 1; p <= pb; p++, i++)
                     {
+                        if (i > encode_mes.Count) break;
                         cbit += encode_mes[i-1];
                     }
                 conBit--;
@@ -41,8 +42,9 @@ namespace Hamming
                 cbit = 0;
             }
 
+            int p3b = (int)Math.Pow(2, conBit);
 
-            
+
         }
 
         public void decoding ()
