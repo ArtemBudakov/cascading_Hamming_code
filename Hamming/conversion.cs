@@ -17,14 +17,17 @@ namespace Hamming
         public string messege;
         public string word;
 
-        public conversion (string messege)
+        public List<int> conversion_end (string messege)
         {
-            for(int i=0; i<messege.Length; i++)
+            List<int> mes = new List<int> { 0, 1, 0, 1 };
+            for (int i=0; i<messege.Length; i++)
             {
                 word += Convert.ToString(messege[i], 2);
                 //MessageBox.Show(word.ToString());
             }
+        return mes;
         }  
+
     }
     
 }

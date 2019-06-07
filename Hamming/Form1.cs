@@ -17,7 +17,7 @@ namespace Hamming
             InitializeComponent();
         }
         encode enc;
-        conversion con;
+        conversion con ;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -27,9 +27,14 @@ namespace Hamming
         private void button1_Click(object sender, EventArgs e)
         {
             //encode  = new encode();
-            conversion hello = new conversion(textBox1.Text);
-            this.con = new conversion(textBox1.Text);
-            this.enc.En_code(con);
+            //conversion hello = new conversion(textBox1.Text);
+            //this.con = new conversion_end(textBox1.Text);
+            //this.con.conversion_end(textBox1.Text);
+            //this.enc.En_code(con);
+            conversion con = new conversion();
+            con.conversion_end(textBox1.Text);
+            encode enc = new encode();
+            enc.En_code(con);
 
         }
     }

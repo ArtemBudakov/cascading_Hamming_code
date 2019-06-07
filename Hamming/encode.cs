@@ -49,7 +49,11 @@ namespace Hamming
             }
             return encode_end;
         }
-        
+        internal void En_code(conversion con)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 
