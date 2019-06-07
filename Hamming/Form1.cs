@@ -28,11 +28,13 @@ namespace Hamming
         {
             if (textBox1.Text != "")
             {
-                 encode enc = new encode();
+                Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
-                bitMask.GetBitMask(textBox1.Text);
+                 bitMask.GetBitMask(textBox1.Text); //сделать отправку в encoding
+                hamm.encoding();
+
             }
-            else MessageBox.Show("вветите сообшение");
+            else MessageBox.Show("введите сообшение");
 
         }
 
