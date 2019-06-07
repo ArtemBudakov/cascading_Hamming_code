@@ -42,12 +42,13 @@ namespace Hamming
                     int first_element = 0;
                     char symbol = word[first_element];
                     //MessageBox.Show(symbol.ToString());
-
+                    string test = symbol.ToString();
+                    four_symbols = four_symbols + test ;
                     word = word.Remove(0,1);
                     //char test = four_symbols[i];
                     //MessageBox.Show( test .ToString());
-                    four_symbols.PadRight(i,symbol); // в чаре хрен пойми какой символ. нужно преобразовать в строку и тестить
-                    four_symbols.PadLeft(i, symbol);
+                    //four_symbols.PadRight(i, symbol); // в чаре хрен пойми какой символ. нужно преобразовать в строку и тестить
+                    //four_symbols.PadLeft(i, symbol);
 
                 }
                 four_symbols_int = Convert.ToInt32(four_symbols);
