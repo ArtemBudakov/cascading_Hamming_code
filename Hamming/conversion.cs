@@ -13,6 +13,7 @@ namespace Hamming
 
     public class conversion
     {
+
         public string messege;
         public string word;
 
@@ -23,7 +24,7 @@ namespace Hamming
                 word += Convert.ToString(messege[i], 2);
                 //MessageBox.Show(word.ToString());
             }
-        }
+        }  
     }
     
 }

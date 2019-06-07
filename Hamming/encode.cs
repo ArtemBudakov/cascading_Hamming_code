@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace Hamming
 {
-    class encode
+    public class encode
     {
-        int conBit = -1;
+
         public encode()
         {
+           
+        }
 
-            List<int> mes = new List<int> { 1, 1, 1, 1 };
+        public List<int> En_code (List<int> conversion_end)
+        //public List<int> En_code()
+        {
+            List<int> encode_end = new List<int>();
+            int conBit = -1;
+            List<int> mes = new List<int> { 0, 1, 0, 1 };
             List<int> encode_mes = new List<int>();
 
             int j = 0;
@@ -40,11 +47,9 @@ namespace Hamming
                 encode_mes[pb - 1] = cbit % 2;
                 cbit = 0;
             }
-
-
-
+            return encode_end;
         }
-
+        
     }
 }
 
