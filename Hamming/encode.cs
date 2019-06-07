@@ -8,25 +8,14 @@ namespace Hamming
 {
     class encode
     {
-        int conBit = 0;
+        int conBit = -1;
         public encode()
         {
 
             List<int> mes = new List<int> { 1, 0, 1, 0 };
-            List<int> encode_mes = new List<int>();
-            // int i = 0;
+            List<int> encode_mes = new List<int> { 1,2,3,4,5,6,7};
 
-            //str = str.Insert(0, "X").Insert(1, "X");
-            /*
-                        foreach (int mesbit in mes)
-                        {
-                            str = str.Insert(i+2, mesbit.ToString());
-                            //encode_mes.Insert(i, mesbit);
-                            i++;
-                            if (i == (Math.Pow(2, j))) str = str.Insert(i - 1, "X");
-                        }
-                        */
-            int j = 0;
+           /* int j = 0;
 
             encode_mes = mes;
 
@@ -36,30 +25,22 @@ namespace Hamming
                 encode_mes.Insert(i-1,0);
                 conBit++;
             }
-
+            */
             int cbit = 0;
+            conBit = 2;
             
-            while(conBit != 0)
+            while(conBit >= 0)
             {
                 int pb = (int)Math.Pow(2, conBit);
-                int p;
-                for (int i = pb; i <= mes.Capacity; i++)
-
-                    cbit += mes[i];
-                    
+                for (int i = pb; i <= encode_mes.Capacity; i += pb)
+                    for (int p = 1; p <= pb; p++, i++)
+                    {
+                        cbit += encode_mes[i-1];
+                    }
+                conBit--;
+                cbit = 0;
             }
-            /*
-            for (int b = i; b <= mes.Capacity; b += i + 1)
-            {
 
-                cbit += mes[b];
-
-            }
-            /* while(conBit!=0)
-             for (int i = 0; i <= mes.Capacity; i++)
-             {
-                 if ()
-             }*/
 
 
         }
