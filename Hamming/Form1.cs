@@ -16,26 +16,21 @@ namespace Hamming
         {
             InitializeComponent();
         }
-        encode enc;
-        conversion con ;
+        public conversion conv;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             listBox1.Text = "";
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //encode  = new encode();
-            //conversion hello = new conversion(textBox1.Text);
-            //this.con = new conversion_end(textBox1.Text);
-            //this.con.conversion_end(textBox1.Text);
-            //this.enc.En_code(con);
-            conversion con = new conversion();
-            con.conversion_end(textBox1.Text);
             encode enc = new encode();
-            enc.En_code(con);
-
+            conversion bitMask = new conversion();
+            bitMask.GetBitMask(textBox1.Text);
+            enc.decoding();
+            enc.error_correction();
         }
     }
 }
