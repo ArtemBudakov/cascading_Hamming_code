@@ -10,42 +10,63 @@ namespace Hamming
     class Hamming
     {
         int starshaya_stepen;
+       // List<List<string>> matrixencode;// порождающая матрица
         public Hamming()
         {
+
         }
-        public void encoding()
+
+        public List<List<int>> encoding (List<List<int>> Bitmask)//кодирует сообщение
         {
-            List<int> mes = new List<int> { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
-            List<int> encode_mes = new List<int>();
-
-            int j = 0;
-            int conBit = -1;
-            encode_mes = mes;
-
-            for (int i = 1; i < mes.Count; j++, i = (int)Math.Pow(2, j))
+            int mi = 0; //индекс порождающей матрицы
+            //matrixencode = new List<List<string>>();
+            foreach (List<int> encode_mes in Bitmask)
             {
+             
+                int j = 0;
+                int conBit = -1;
+                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))
+                {
 
-                encode_mes.Insert(i - 1, 0);
-                conBit++;
+                    encode_mes.Insert(i - 1, 0);
+                    //matrixencode[mi].Insert(i - 1, "X");
+                    conBit++;
+                }
+
+                int cbit = 0;
+
+                while (conBit >= 0)
+                {
+                    int pb = (int)Math.Pow(2, conBit);
+                    for (int i = pb; i <= encode_mes.Count; i += pb)
+                        for (int p = 1; p <= pb; p++, i++)
+                        {
+                            if (i > encode_mes.Count) break;
+                            cbit += encode_mes[i - 1];
+                        }
+                    conBit--;
+                    encode_mes[pb - 1] = cbit % 2;
+                    cbit = 0;
+                }
+                mi++; 
             }
-
-            int cbit = 0;
-
-            while (conBit >= 0)
-            {
-                int pb = (int)Math.Pow(2, conBit);
-                for (int i = pb; i <= encode_mes.Count; i += pb)
-                    for (int p = 1; p <= pb; p++, i++)
-                    {
-                        if (i > encode_mes.Count) break;
-                        cbit += encode_mes[i - 1];
-                    }
-                conBit--;
-                encode_mes[pb - 1] = cbit % 2;
-                cbit = 0;
-            }
+            return Bitmask;
         }
-           public void decoding()
+        public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
+        {
+            List<List<int>> Bitmask = encoding(Bitmaskmes);
+            string strBitMask = "";
+            foreach (List<int> j in Bitmask)
+            {
+                foreach (int i in j)
+                {
+                    strBitMask = strBitMask + i;
+                }
+                strBitMask = strBitMask + "##";
+            }
+            return strBitMask;
+        }
+        public void decoding()
             {
                 List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
 

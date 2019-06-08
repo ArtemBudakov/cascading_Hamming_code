@@ -1,4 +1,4 @@
-﻿C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csprojAssemblyReference.cache
+C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csprojAssemblyReference.cache
 C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.Properties.Resources.resources
 C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csproj.GenerateResource.cache
 C:\GIT\cascading_Hamming_code\Hamm\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
@@ -16,4 +16,13 @@ H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\o
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamm.exe
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamm.pdb
->>>>>>> encode
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamm.exe.config
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamm.exe
+C:\GIT\cascading_Hamming_code\Hamming\bin\Debug\Hamm.pdb
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csprojAssemblyReference.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.Properties.Resources.resources
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.GenerateResource.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.exe
+C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.pdb
