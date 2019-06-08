@@ -12,12 +12,11 @@ namespace Hamming
         int starshaya_stepen;
         public Hamming()
         {
+
         }
+
         public List<List<int>> encoding (List<List<int>> Bitmask)
         {
-            //List<int> encode_mes = new List<int>();
-
-
             foreach (List<int> encode_mes in Bitmask)
             {
                 int j = 0;
@@ -48,7 +47,21 @@ namespace Hamming
             }
             return Bitmask;
         }
-           public void decoding()
+        public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
+        {
+            List<List<int>> Bitmask = encoding(Bitmaskmes);
+            string strBitMask = "";
+            foreach (List<int> j in Bitmask)
+            {
+                foreach (int i in j)
+                {
+                    strBitMask = strBitMask + i;
+                }
+                strBitMask = strBitMask + "|";
+            }
+            return strBitMask;
+        }
+        public void decoding()
             {
                 List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
 
