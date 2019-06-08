@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,9 @@ namespace Hamming
 {
     class Hamming
     {
+        int starshaya_stepen;
         public Hamming()
         {
-
-           
-
         }
         public void encoding()
         {
@@ -46,15 +45,126 @@ namespace Hamming
                 cbit = 0;
             }
         }
-        public void decoding()
-        {
-            List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
+           public void decoding()
+            {
+                List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
 
-            int a = mes.Capacity;
+                int i = 0, stepen = 0;
+                while (i == 0)
+                {
+                    int a = mes.Count;
+                    int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
+                    if (test_con_bit < 0)
+                    {
+                        stepen--;
+                        break;
+                    }
+                    stepen++;
+                }
+                while (stepen >= 0)
+                {
+                    mes.RemoveAt(Convert.ToInt32(Math.Pow(2, stepen)) - 1);
+                    stepen--;
+                }
+            }
+
+            public void error_correction()
+            {
+                List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
+                List<int> check_bits_start = new List<int>();
+                List<int> check_bits_error = new List<int>();
+                int check_bit;
+
+                ///////////////// смотрю какая степень 2ки максимальная
+                int i = 0, stepen = 0;
+                while (i == 0)
+                {
+                    int a = mes.Count;
+                    int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
+                    if (test_con_bit < 0)
+                    {
+                        stepen--;
+                        starshaya_stepen = stepen;
+                        break;
+                    }
+                    stepen++;
+                }
+                //////////////////////// забираю все информационные биты
+                while (stepen >= 0)
+                {
+                    check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
+                    stepen--;
+                    //MessageBox.Show(Convert.ToString(check_bit));
+                    check_bits_start.Insert(0, check_bit);
+                }
+
+                // вызываем метод decoder который вернёт нам исходную строку и делаю ошибку
+                List<int> error = new List<int> { 1, 0, 1, 0 };
+                Random rnd = new Random();
+                int random_index = rnd.Next(0, error.Count);
+                MessageBox.Show(Convert.ToString(random_index));
+                int element = error[random_index];
+                if (element == 0)
+                {
+                    error.Insert(random_index, 1);
+                    error.RemoveAt(random_index + 1);
+                }
+                else
+                {
+                    error.Insert(random_index, 0);
+                    error.RemoveAt(random_index + 1);
+                }
+                // в листе ERROR лежит исходный бинарный набор с ОДНОЙ ошибкой!
+                // нужно вызвать метод ENCODE, чтобы расставить для листа ERROR проверочные биты
+
+
+                ///////////// расставление проверочных бит для сообщения с ошибкой
+
+                //////////////////// забираю проверочные биты сообщения с ошибкой
+                stepen = starshaya_stepen;
+                while (stepen >= 0)
+                {
+                    check_bit = error[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
+                    stepen--;
+                    //MessageBox.Show(Convert.ToString(check_bit));
+                    check_bits_error.Insert(0, check_bit);
+                }
+
+                //////////////// сверяем проверочные биты для поиска ошибки (по индексу)
+                int control_sum = 0;
+                stepen = starshaya_stepen;
+                while (stepen >= 0)
+                {
+                    check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
+                    if (check_bit == error[Convert.ToInt32(Math.Pow(2, stepen)) - 1])
+                    {
+                        stepen--;
+                        continue;
+                    }
+                    else
+                    {
+                        control_sum = control_sum + Convert.ToInt32(Math.Pow(2, stepen));
+                        stepen--;
+                    }
+                }
+
+                //////////////////////// исправляем ошибку по найденному индексу
+                check_bit = error[control_sum - 1];
+                if (check_bit == 0)
+                {
+                    error.Insert(control_sum - 1, 1);
+                    error.RemoveAt(control_sum);
+                }
+                else
+                {
+                    error.Insert(control_sum - 1, 0);
+                    error.RemoveAt(control_sum);
+                }
+
+            }
 
         }
 
     }
-}
 
-
+ 

@@ -26,24 +26,17 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             if (textBox1.Text != "")
             {
                 Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
                  bitMask.GetBitMask(textBox1.Text); //сделать отправку в encoding
                 hamm.encoding();
+                hamm.decoding();
+                hamm.error_correction();
 
             }
             else MessageBox.Show("введите сообшение");
-
-=======
-            encode enc = new encode();
-            conversion bitMask = new conversion();
-            bitMask.GetBitMask(textBox1.Text);
-            enc.decoding();
-            enc.error_correction();
->>>>>>> encode
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)

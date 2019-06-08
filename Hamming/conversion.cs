@@ -18,13 +18,6 @@ namespace Hamming
             for (int i = 0; i < message.Length; i++)
             {
                 Bitmessage += Convert.ToString(message[i], 2);
-<<<<<<< HEAD
-
-                while(Bitmessage.Length<8)
-                    Bitmessage = String.Concat('0', Bitmessage);
-=======
-                Bitmessage = String.Concat('0', Bitmessage);
->>>>>>> encode
 
                 while (Bitmessage.Length > 1)
                 {
@@ -32,11 +25,7 @@ namespace Hamming
 
                     for (int j = 0; j < 4; j++)
                         bit4.Add((int)Char.GetNumericValue(Bitmessage[j]));
-<<<<<<< HEAD
 
-=======
-                    
->>>>>>> encode
                     Bitmask.Add(bit4);
                     Bitmessage = Bitmessage.Substring(4);
                 }
