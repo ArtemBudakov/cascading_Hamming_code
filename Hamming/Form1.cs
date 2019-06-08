@@ -28,12 +28,15 @@ namespace Hamming
         {
             if (textBox1.Text != "")
             {
-                 encode enc = new encode();
+                Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
-                bitMask.GetBitMask(textBox1.Text);
-            }
-            else MessageBox.Show("вветите сообшение");
+                 bitMask.GetBitMask(textBox1.Text); //сделать отправку в encoding
+                hamm.encoding();
+                hamm.decoding();
+                hamm.error_correction();
 
+            }
+            else MessageBox.Show("введите сообшение");
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)

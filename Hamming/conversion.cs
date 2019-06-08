@@ -19,9 +19,6 @@ namespace Hamming
             {
                 Bitmessage += Convert.ToString(message[i], 2);
 
-                while(Bitmessage.Length<8)
-                    Bitmessage = String.Concat('0', Bitmessage);
-
                 while (Bitmessage.Length > 1)
                 {
                     List<int> bit4 = new List<int>();
