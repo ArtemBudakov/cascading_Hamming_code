@@ -20,8 +20,7 @@ namespace Hamming
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBox1.Text = "";
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,10 +29,12 @@ namespace Hamming
             {
                 Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
-                 bitMask.GetBitMask(textBox1.Text); //сделать отправку в encoding
-                hamm.encoding();
-                hamm.decoding();
-                hamm.error_correction();
+                richTextBox1.Text = "Исходное сообщение: " + textBox1.Text +"\n" + bitMask.GetbitmaskToStr(textBox1.Text);
+                hamm.encoding(bitMask.GetBitMask(textBox1.Text));
+                //richTextBox1.Text = 
+                //hamm.encoding();
+                //hamm.decoding();
+                //hamm.error_correction();
 
             }
             else MessageBox.Show("введите сообшение");
