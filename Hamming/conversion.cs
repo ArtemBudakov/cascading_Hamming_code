@@ -38,14 +38,14 @@ namespace Hamming
         public string GetbitmaskToStr(string message) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<int>> Bitmask = GetBitMask(message);
-            string strBitMask = "";
+            string strBitMask = "_";
             foreach (List<int> j in Bitmask)
                 {
                 foreach (int i in j)
                 {
                     strBitMask = strBitMask + i;
                 }
-                strBitMask = strBitMask + "|";
+                strBitMask =strBitMask + "__##_";
             }
             return strBitMask;
         }
