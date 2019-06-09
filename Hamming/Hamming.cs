@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hamming
 {
@@ -11,59 +9,97 @@ namespace Hamming
     {
 
         int starshaya_stepen;
-       // List<List<string>> matrixencode;// порождающая матрица
         public Hamming()
         {
 
         }
 
-        public List<List<int>> encoding (List<List<int>> Bitmask)//кодирует сообщение
+        public List<List<List<int>>> encoding (List<List<int>> Bitmask)//кодирует сообщение
         {
-            int mi = 0; //индекс порождающей матрицы
-            //matrixencode = new List<List<string>>();
+            List<List<List<int>>> matrixencodefull = new List<List<List<int>>>();//все матрицы сообщения
             foreach (List<int> encode_mes in Bitmask)
             {
-             
+                List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
                 int j = 0;
-                int conBit = -1;
-                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))
+                int conBit = 0; //количество проверочных битов
+                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))//заполнение контрольных битов нулями
                 {
-
+             
                     encode_mes.Insert(i - 1, 0);
-                    //matrixencode[mi].Insert(i - 1, "X");
                     conBit++;
                 }
-
-                int cbit = 0;
-
-                while (conBit >= 0)
+                List<int> matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
+                matrixencode.Add(matrix);
+                int cbit = 0;  //значение проверочного бита
+                int ps = 0; //начальный проверочный бит
+                while (ps<=conBit-1)
                 {
-                    int pb = (int)Math.Pow(2, conBit);
+                    int pb = (int)Math.Pow(2, ps); //степень двойки
                     for (int i = pb; i <= encode_mes.Count; i += pb)
                         for (int p = 1; p <= pb; p++, i++)
                         {
                             if (i > encode_mes.Count) break;
                             cbit += encode_mes[i - 1];
                         }
-                    conBit--;
+                    ps++;
                     encode_mes[pb - 1] = cbit % 2;
+                    matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
+                    matrixencode.Add(matrix);
                     cbit = 0;
                 }
-                mi++; 
-            }
-            return Bitmask;
+                matrixencodefull.Add(matrixencode);
+             }
+            return matrixencodefull;
         }
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
-            List<List<int>> Bitmask = encoding(Bitmaskmes);
+            List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
+            int cBit = Bitmask[0].Count()-1;
             string strBitMask = "";
-            foreach (List<int> j in Bitmask)
+            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы
             {
-                foreach (int i in j)
-                {
-                    strBitMask = strBitMask + i;
+                if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                else strBitMask = strBitMask + "\nbit(" + d + ")";
+                foreach (List<List<int>> s in Bitmask)
+            {
+
+                    int db = 0; //номер необходимой строки
+                    foreach (List<int> j in s)
+                    {
+                        if (d != db)
+                        {
+                            db++;
+                            continue;
+                        }
+                        foreach (int i in j)
+                        {
+                            strBitMask = strBitMask + i;
+
+                        }
+                        strBitMask = strBitMask + "##";
+                        db++;
+                    }
                 }
-                strBitMask = strBitMask + "##";
+            }
+            strBitMask = strBitMask + "\nЗашифрованное сообщение\n";
+            foreach (List<List<int>> s in Bitmask) //вывод зашифрованного сообщения
+            {
+
+                int db = 0;//номер необходимой строки
+                foreach (List<int> j in s)
+                {
+                    if (cBit != db)
+                    {
+                        db++;
+                        continue;
+                    }
+                    foreach (int i in j)
+                    {
+                        strBitMask = strBitMask + i;
+
+                    }
+                    db++;
+                }
             }
             return strBitMask;
         }
