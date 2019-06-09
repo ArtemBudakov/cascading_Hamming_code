@@ -20,20 +20,20 @@ namespace Hamming
             {
                 List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
                 int j = 0;
-                int conBit = 0; //количество контрольных битов
+                int conBit = 0; //количество проверочных битов
                 for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))//заполнение контрольных битов нулями
                 {
              
                     encode_mes.Insert(i - 1, 0);
                     conBit++;
                 }
-                List<int> matrix = new List<int>(encode_mes);
+                List<int> matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
                 matrixencode.Add(matrix);
-                int cbit = 0;
-                int ps = 0; //начало отсчёта
+                int cbit = 0;  //значение проверочного бита
+                int ps = 0; //начальный проверочный бит
                 while (ps<=conBit-1)
                 {
-                    int pb = (int)Math.Pow(2, ps);
+                    int pb = (int)Math.Pow(2, ps); //степень двойки
                     for (int i = pb; i <= encode_mes.Count; i += pb)
                         for (int p = 1; p <= pb; p++, i++)
                         {
@@ -42,7 +42,7 @@ namespace Hamming
                         }
                     ps++;
                     encode_mes[pb - 1] = cbit % 2;
-                    matrix = new List<int>(encode_mes);
+                    matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
                     matrixencode.Add(matrix);
                     cbit = 0;
                 }
@@ -62,7 +62,7 @@ namespace Hamming
                 foreach (List<List<int>> s in Bitmask)
             {
 
-                    int db = 0;
+                    int db = 0; //номер необходимой строки
                     foreach (List<int> j in s)
                     {
                         if (d != db)
@@ -84,7 +84,7 @@ namespace Hamming
             foreach (List<List<int>> s in Bitmask) //вывод зашифрованного сообщения
             {
 
-                int db = 0;
+                int db = 0;//номер необходимой строки
                 foreach (List<int> j in s)
                 {
                     if (cBit != db)

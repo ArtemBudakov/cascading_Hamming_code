@@ -45,7 +45,7 @@ namespace Hamming
                 {
                     strBitMask = strBitMask + i;
                 }
-                strBitMask =strBitMask + "    ##  ";
+                strBitMask =strBitMask + "   ##   ";
             }
             return strBitMask;
         }
