@@ -26,3 +26,4 @@ C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.GenerateResource.cac
 C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
 C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.exe
 C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.pdb
+H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
