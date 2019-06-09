@@ -127,9 +127,36 @@ namespace Hamming
             return mes;
         }
 
-        public List<int> error_correction(List<int> Bitmask)
+        public List<List<List<int>>> error_correction(List<List<List<int>>> i_dont_know)
         {
-            List<int> mes = new List<int>(Bitmask);
+            List<List<List<int>>> fortest = new List<List<List<int>>>(i_dont_know);
+
+            List<int> mes = new List<int>();
+
+            foreach (List<List<int>> third in fortest)
+            {
+                int l = 0;
+                foreach (List<int> second in third)
+                {
+
+                    if (l < 3)
+                    {
+                        l++;
+                        break;
+                    }
+                    else
+                    {
+
+                        int d = 0;
+                        foreach (int first in second)
+                        {
+                            mes.Insert(d, first);
+                        }
+                    }
+                }
+            }
+
+
             List<int> check_bits_start = new List<int>();
             List<int> check_bits_error = new List<int>();
             int check_bit;
@@ -252,7 +279,8 @@ namespace Hamming
 
             Hamming ham_dec_for_end = new Hamming();
             error = ham_dec_for_end.decoding(mes);
-            return error;
+            return fortest;
+            //return error;
         }
 
     }
