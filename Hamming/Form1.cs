@@ -33,7 +33,9 @@ namespace Hamming
                 //hamm.encoding();
                 //hamm.decoding();
                 //hamm.error_correction();
-
+                List<int> Bitmask = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
+                //hamm.decoding(Bitmask);
+                hamm.error_correction(Bitmask);
             }
             else MessageBox.Show("введите сообшение");
         }
