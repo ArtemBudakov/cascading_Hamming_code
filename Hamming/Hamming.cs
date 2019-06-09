@@ -51,6 +51,7 @@ namespace Hamming
              }
             return matrixencodefull;
         }
+
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
@@ -58,7 +59,7 @@ namespace Hamming
             string strBitMask = "";
             for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы
             {
-                if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                if(d==0)strBitMask = "Проверочная матрица\n" + "bit(" + cBit + ")" + strBitMask;
                 else strBitMask = strBitMask + "\nbit(" + d + ")";
                 foreach (List<List<int>> s in Bitmask)
             {
@@ -127,54 +128,38 @@ namespace Hamming
             return mes;
         }
 
-        public List<List<List<int>>> error_correction(List<List<List<int>>> i_dont_know)
+        public List<List<int>> error_correction(List<List<int>> fortest)
         {
-            List<List<List<int>>> fortest = new List<List<List<int>>>(i_dont_know);
-
-            List<int> mes = new List<int>();
-
-            foreach (List<List<int>> third in fortest)
+            List<List<int>> error_new = new List<List<int>>();
+            foreach (List<int> second in fortest)
             {
-                int l = 0;
-                foreach (List<int> second in third)
+                List<int> mes = new List<int>();
+                int lenth = 0;
+                foreach (int first in second)
                 {
+                    mes.Insert(lenth, first);
+                    lenth++;
+                }
 
-                    if (l < 3)
+                List<int> check_bits_start = new List<int>();
+                List<int> check_bits_error = new List<int>();
+                int check_bit;
+                starshaya_stepen = 0;
+
+                ///////////////// смотрю какая степень 2ки максимальная
+                int i = 0, stepen = 0;
+                while (i == 0)
+                {
+                    int a = mes.Count;
+                    int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
+                    if (test_con_bit < 0)
                     {
-                        l++;
+                        stepen--;
+                        starshaya_stepen = stepen;
                         break;
                     }
-                    else
-                    {
-
-                        int d = 0;
-                        foreach (int first in second)
-                        {
-                            mes.Insert(d, first);
-                        }
-                    }
+                    stepen++;
                 }
-            }
-
-
-            List<int> check_bits_start = new List<int>();
-            List<int> check_bits_error = new List<int>();
-            int check_bit;
-
-            ///////////////// смотрю какая степень 2ки максимальная
-            int i = 0, stepen = 0;
-            while (i == 0)
-            {
-                int a = mes.Count;
-                int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
-                if (test_con_bit < 0)
-                {
-                    stepen--;
-                    starshaya_stepen = stepen;
-                    break;
-                }
-                stepen++;
-            }
             //////////////////////// забираю все информационные биты
             while (stepen >= 0)
             {
@@ -187,10 +172,12 @@ namespace Hamming
             Hamming ham_dec_for_error = new Hamming();
             List<int> error = ham_dec_for_error.decoding(mes);
 
-            //  делаю ошибку
-            Random rnd = new Random();
+                //  делаю ошибку
+
+            /*Random rnd = new Random();
             int random_index = rnd.Next(0, error.Count);
             int element = error[random_index];
+            
             if (element == 0)
             {
                 error.Insert(random_index, 1);
@@ -201,19 +188,22 @@ namespace Hamming
                 error.Insert(random_index, 0);
                 error.RemoveAt(random_index + 1);
             }
-            MessageBox.Show(Convert.ToString("ошибка по индексу = " + random_index));
+            */
 
-            ///////// здесь можно вызывать метод преобразования Листа в строку для вывода проверочной матрицы
-            //Hamming error_message = new Hamming();
-            //string error_mes = error_message.GetEncBitMaskToStr(error);
+                
+                //MessageBox.Show(Convert.ToString("ошибка по индексу = " + random_index));
+
+                ///////// здесь можно вызывать метод преобразования Листа в строку для вывода проверочной матрицы
+                //Hamming error_message = new Hamming();
+                //string error_mes = error_message.GetEncBitMaskToStr(error);
 
 
-            // в листе ERROR лежит исходный бинарный набор с ОДНОЙ ошибкой!
+                // в листе ERROR лежит исходный бинарный набор с ОДНОЙ ошибкой!
 
-            
-            ///////////// расставление проверочных бит для сообщения с ошибкой
-            ////encode for one list
-            int j = 0, conBit = -1;
+
+                ///////////// расставление проверочных бит для сообщения с ошибкой
+                ////encode for one list
+                int j = 0, conBit = -1;
 
             for (int z = 1; z < error.Count; j++, z = (int)Math.Pow(2, j))
             {
@@ -265,20 +255,27 @@ namespace Hamming
             }
 
             //////////////////////// исправляем ошибку по найденному индексу
-            check_bit = error[control_sum - 1];
-            if (check_bit == 0)
-            {
-                error.Insert(control_sum - 1, 1);
-                error.RemoveAt(control_sum);
-            }
-            else
-            {
-                error.Insert(control_sum - 1, 0);
-                error.RemoveAt(control_sum);
-            }
 
-            Hamming ham_dec_for_end = new Hamming();
-            error = ham_dec_for_end.decoding(mes);
+                if (control_sum != 0)
+                {
+                    check_bit = error[control_sum - 1];
+                    if (check_bit == 0)
+                    {
+                        error.Insert(control_sum - 1, 1);
+                        error.RemoveAt(control_sum);
+                    }
+                    else
+                    {
+                        error.Insert(control_sum - 1, 0);
+                        error.RemoveAt(control_sum);
+                    }
+
+                }
+                error_new.Add(error);
+
+
+            }
+            
             return fortest;
             //return error;
         }

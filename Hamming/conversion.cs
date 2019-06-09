@@ -49,6 +49,37 @@ namespace Hamming
             }
             return strBitMask;
         }
+
+        public List<List<int>> Mask_decoding(string message)
+        {   
+            List<List<int>> Bitmask = new List<List<int>>();
+            for (int i = 0; i < message.Length; i++)
+            {                
+
+                while (message.Length > 1)
+                {
+                    List<int> bit7 = new List<int>();
+
+                    for (int j = 0; j < 7; j++)
+                        bit7.Add((int)Char.GetNumericValue(message[j]));
+
+                    Bitmask.Add(bit7);
+                    message = message.Substring(7);
+                }
+            }
+
+            return Bitmask;
+        }
+
+        public string Get_correction_mask(string matrix)
+        {
+            for(int i = 7; i < matrix.Length; i+=9)
+            {
+                matrix = matrix.Insert(i, "##");
+            }
+            return matrix;
+        }
+
     }
     
 }
