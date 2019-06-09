@@ -10,32 +10,30 @@ namespace Hamming
     class Hamming
     {
         int starshaya_stepen;
-        List<List<string>> matrixencode;// порождающая матрица
         public Hamming()
         {
 
         }
 
-        public List<List<int>> encoding (List<List<int>> Bitmask)//кодирует сообщение
+        public List<List<List<int>>> encoding (List<List<int>> Bitmask)//кодирует сообщение
         {
-            int mi = 0; //индекс порождающей матрицы
-            //matrixencode = new List<List<string>>();
+            List<List<List<int>>> matrixencodefull = new List<List<List<int>>>();//все матрицы сообщения
             foreach (List<int> encode_mes in Bitmask)
             {
-             
+                List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
                 int j = 0;
-                int conBit = -1;
+                int conBit = 0;
                 for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))
                 {
-
+             
                     encode_mes.Insert(i - 1, 0);
-                    //matrixencode[mi].Insert(i - 1, "X");
                     conBit++;
                 }
-
+                List<int> matrix = new List<int>(encode_mes);
+                matrixencode.Add(matrix);
                 int cbit = 0;
                 int ps = 0; //начало отсчёта
-                while (ps<=conBit)
+                while (ps<=conBit-1)
                 {
                     int pb = (int)Math.Pow(2, ps);
                     for (int i = pb; i <= encode_mes.Count; i += pb)
@@ -46,15 +44,17 @@ namespace Hamming
                         }
                     ps++;
                     encode_mes[pb - 1] = cbit % 2;
+                    matrix = new List<int>(encode_mes);
+                    matrixencode.Add(matrix);
                     cbit = 0;
                 }
-                //mi++; 
-            }
-            return Bitmask;
+                matrixencodefull.Add(matrixencode);
+             }
+            return matrixencodefull;
         }
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
-            List<List<int>> Bitmask = encoding(Bitmaskmes);
+            List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
             string strBitMask = "";
             foreach (List<int> j in Bitmask)
             {
