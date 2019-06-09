@@ -56,16 +56,30 @@ namespace Hamming
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
             string strBitMask = "";
-            foreach (List<List<int>> s in Bitmask)
+            //for(int d = 0;d<7;d++)
+            for (int d = 0; d < 6; d++)
             {
-                strBitMask = strBitMask + "@@";
-                foreach (List<int> j in s)
-                {
-                    foreach (int i in j)
+                strBitMask = strBitMask + "\n";
+                foreach (List<List<int>> s in Bitmask)
+            {
+
+                    int db = 0;
+                    foreach (List<int> j in s)
                     {
-                        strBitMask = strBitMask + i;
+                        if (d != db)
+                        {
+                            //strBitMask = strBitMask + "@";
+                            db++;
+                            continue;
+                        }
+                        foreach (int i in j)
+                        {
+                            strBitMask = strBitMask + i;
+
+                        }
+                        strBitMask = strBitMask + "##";
+                        db++;
                     }
-                    strBitMask = strBitMask + "##";
                 }
             }
             return strBitMask;
