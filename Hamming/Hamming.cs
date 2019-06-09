@@ -10,7 +10,7 @@ namespace Hamming
     class Hamming
     {
         int starshaya_stepen;
-       // List<List<string>> matrixencode;// порождающая матрица
+        List<List<string>> matrixencode;// порождающая матрица
         public Hamming()
         {
 
@@ -34,21 +34,21 @@ namespace Hamming
                 }
 
                 int cbit = 0;
-
-                while (conBit >= 0)
+                int ps = 0; //начало отсчёта
+                while (ps<=conBit)
                 {
-                    int pb = (int)Math.Pow(2, conBit);
+                    int pb = (int)Math.Pow(2, ps);
                     for (int i = pb; i <= encode_mes.Count; i += pb)
                         for (int p = 1; p <= pb; p++, i++)
                         {
                             if (i > encode_mes.Count) break;
                             cbit += encode_mes[i - 1];
                         }
-                    conBit--;
+                    ps++;
                     encode_mes[pb - 1] = cbit % 2;
                     cbit = 0;
                 }
-                mi++; 
+                //mi++; 
             }
             return Bitmask;
         }
@@ -66,6 +66,7 @@ namespace Hamming
             }
             return strBitMask;
         }
+
         public void decoding()
             {
                 List<int> mes = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
