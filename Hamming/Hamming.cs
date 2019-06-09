@@ -22,8 +22,8 @@ namespace Hamming
             {
                 List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
                 int j = 0;
-                int conBit = 0;
-                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))
+                int conBit = 0; //количество контрольных битов
+                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))//заполнение контрольных битов нулями
                 {
              
                     encode_mes.Insert(i - 1, 0);
@@ -56,13 +56,17 @@ namespace Hamming
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
             string strBitMask = "";
-            foreach (List<int> j in Bitmask)
+            foreach (List<List<int>> s in Bitmask)
             {
-                foreach (int i in j)
+                strBitMask = strBitMask + "@@";
+                foreach (List<int> j in s)
                 {
-                    strBitMask = strBitMask + i;
+                    foreach (int i in j)
+                    {
+                        strBitMask = strBitMask + i;
+                    }
+                    strBitMask = strBitMask + "##";
                 }
-                strBitMask = strBitMask + "##";
             }
             return strBitMask;
         }
