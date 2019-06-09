@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hamming
 {
@@ -55,11 +53,12 @@ namespace Hamming
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
+            int cBit = Bitmask[0].Count()-1;
             string strBitMask = "";
-            //for(int d = 0;d<7;d++)
-            for (int d = 0; d < 6; d++)
+            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы
             {
-                strBitMask = strBitMask + "\n";
+                if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                else strBitMask = strBitMask + "\nbit(" + d + ")";
                 foreach (List<List<int>> s in Bitmask)
             {
 
@@ -68,7 +67,6 @@ namespace Hamming
                     {
                         if (d != db)
                         {
-                            //strBitMask = strBitMask + "@";
                             db++;
                             continue;
                         }
@@ -80,6 +78,26 @@ namespace Hamming
                         strBitMask = strBitMask + "##";
                         db++;
                     }
+                }
+            }
+            strBitMask = strBitMask + "\nЗашифрованное сообщение\n";
+            foreach (List<List<int>> s in Bitmask) //вывод зашифрованного сообщения
+            {
+
+                int db = 0;
+                foreach (List<int> j in s)
+                {
+                    if (cBit != db)
+                    {
+                        db++;
+                        continue;
+                    }
+                    foreach (int i in j)
+                    {
+                        strBitMask = strBitMask + i;
+
+                    }
+                    db++;
                 }
             }
             return strBitMask;
