@@ -85,7 +85,6 @@ namespace Hamming
             strBitMask = strBitMask + "\nЗашифрованное сообщение\n";
             foreach (List<List<int>> s in Bitmask) //вывод зашифрованного сообщения
             {
-
                 int db = 0;//номер необходимой строки
                 foreach (List<int> j in s)
                 {
@@ -172,39 +171,9 @@ namespace Hamming
             Hamming ham_dec_for_error = new Hamming();
             List<int> error = ham_dec_for_error.decoding(mes);
 
-                //  делаю ошибку
-
-            /*Random rnd = new Random();
-            int random_index = rnd.Next(0, error.Count);
-            int element = error[random_index];
-            
-            if (element == 0)
-            {
-                error.Insert(random_index, 1);
-                error.RemoveAt(random_index + 1);
-            }
-            else
-            {
-                error.Insert(random_index, 0);
-                error.RemoveAt(random_index + 1);
-            }
-            */
-
-                
-                //MessageBox.Show(Convert.ToString("ошибка по индексу = " + random_index));
-
-                ///////// здесь можно вызывать метод преобразования Листа в строку для вывода проверочной матрицы
-                //Hamming error_message = new Hamming();
-                //string error_mes = error_message.GetEncBitMaskToStr(error);
-
-
-                // в листе ERROR лежит исходный бинарный набор с ОДНОЙ ошибкой!
-
-
                 ///////////// расставление проверочных бит для сообщения с ошибкой
-                ////encode for one list
                 int j = 0, conBit = -1;
-
+            //// encode for one list
             for (int z = 1; z < error.Count; j++, z = (int)Math.Pow(2, j))
             {
 
@@ -272,12 +241,10 @@ namespace Hamming
 
                 }
                 error_new.Add(error);
-
-
-            }
-            
+            }            
             return error_new;
         }
+
         public string GetDecBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<int>> Bitmask = error_correction(Bitmaskmes);
@@ -289,7 +256,7 @@ namespace Hamming
                     strBitMask = strBitMask + j;
                 strBitMask = strBitMask + "##";
             }
-            strBitMask = strBitMask + "\nРазшифрованное сообщение\n";
+            strBitMask = strBitMask + "\nРаcшифрованное сообщение\n";
             foreach (List<int> i in Bitmask)
             {
                 int st = 0;

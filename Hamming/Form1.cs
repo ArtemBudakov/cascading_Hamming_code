@@ -30,12 +30,6 @@ namespace Hamming
                 conversion bitMask = new conversion();
                 richTextBox1.Text = "Исходное сообщение: " + textBox1.Text +"\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
                 richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(textBox1.Text));//закодированное сообщение
-                //hamm.decoding();
-                //hamm.error_correction();
-                //List<int> Bitmask = new List<int> { 1, 0, 1, 1, 0, 1, 0 };
-                //hamm.decoding(Bitmask);
-                
-                //richTextBox1.Text = richTextBox1.Text + hamm.error_correction(hamm.encoding(bitMask.GetBitMask(textBox1.Text)));
             }
             else MessageBox.Show("введите сообшение");
         }
