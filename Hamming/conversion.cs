@@ -77,6 +77,7 @@ namespace Hamming
             {
                 matrix = matrix.Insert(i, "##");
             }
+            matrix = matrix + "##";
             return matrix;
         }
 

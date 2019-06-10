@@ -276,8 +276,41 @@ namespace Hamming
 
             }
             
-            return fortest;
-            //return error;
+            return error_new;
+        }
+        public string GetDecBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
+        {
+            List<List<int>> Bitmask = error_correction(Bitmaskmes);
+            string strBitMask = "";
+            strBitMask = strBitMask + "Исправление ошибок\n";
+            foreach (List<int> i in Bitmask)
+            {
+                foreach (int j in i)
+                    strBitMask = strBitMask + j;
+                strBitMask = strBitMask + "##";
+            }
+            strBitMask = strBitMask + "\nРазшифрованное сообщение\n";
+            foreach (List<int> i in Bitmask)
+            {
+                int st = 0;
+                int pb,ind = 1;
+                foreach (int j in i)
+                {
+                    pb = (int)Math.Pow(2, st);
+                    if (ind == pb)
+                    {
+                       st++;
+                       ind++;
+                        continue;
+                    }
+                    strBitMask = strBitMask + j;
+                    ind++;
+                }
+                strBitMask = strBitMask + "##";
+            }
+
+
+            return strBitMask;
         }
 
     }
