@@ -41,10 +41,24 @@ namespace Hamming
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Hamming hamm = new Hamming();
+            if (textBox2.Text != "")
+            {
+                Hamming hamm = new Hamming();
             conversion bitMask = new conversion();
             richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
             richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text));
+        }
+            else MessageBox.Show("введите сообшение");
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (!(e.KeyChar == 48 || e.KeyChar == 49 || e.KeyChar == 8)) { e.Handled = true; }
+         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
