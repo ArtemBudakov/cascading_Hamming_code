@@ -19,7 +19,7 @@ namespace Hamming
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace Hamming
             {
                 Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
-                richTextBox1.Text = "Исходное сообщение: " + textBox1.Text +"\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
+                richTextBox1.Text = "Исходное сообщение: " + textBox1.Text + "\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
                 richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(textBox1.Text));//закодированное сообщение
             }
             else MessageBox.Show("введите сообшение");
@@ -44,17 +44,17 @@ namespace Hamming
             if (textBox2.Text != "")
             {
                 Hamming hamm = new Hamming();
-            conversion bitMask = new conversion();
-            richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
-            richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text));
-        }
+                conversion bitMask = new conversion();
+                richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
+                richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text));
+            }
             else MessageBox.Show("введите сообшение");
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             //if (!(e.KeyChar == 48 || e.KeyChar == 49 || e.KeyChar == 8)) { e.Handled = true; }
-         }
+        }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
