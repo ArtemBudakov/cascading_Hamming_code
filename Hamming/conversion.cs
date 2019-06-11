@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 
 namespace Hamming
@@ -51,23 +52,38 @@ namespace Hamming
         }
 
         public List<List<int>> Mask_decoding(string message)
-        {   
+        {
+
             List<List<int>> Bitmask = new List<List<int>>();
-            for (int i = 0; i < message.Length; i++)
-            {                
-
-                while (message.Length > 1)
+            int for_out = 0;
+            try
+            {
+                for (int i = 0; i < message.Length; i++)
                 {
-                    List<int> bit7 = new List<int>();
 
-                    for (int j = 0; j < 7; j++)
-                        bit7.Add((int)Char.GetNumericValue(message[j]));
+                    while (message.Length > 1)
+                    {
+                        List<int> bit7 = new List<int>();
 
-                    Bitmask.Add(bit7);
-                    message = message.Substring(7);
+                        for (int j = 0; j < 7; j++)
+                            bit7.Add((int)Char.GetNumericValue(message[j]));
+                        Bitmask.Add(bit7);
+                        message = message.Substring(7);
+                    }
                 }
             }
+            catch
+            {
+                if (for_out == 0)
+                {
+                    MessageBox.Show(Convert.ToString("Введённое значение недопустимо"));
+                    List<List<int>> catches = new List<List<int>> ();
+                    return catches;
+                }
 
+            }
+
+               
             return Bitmask;
         }
 
