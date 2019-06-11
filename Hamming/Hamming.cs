@@ -22,6 +22,7 @@ namespace Hamming
                 List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
                 int j = 0;
                 int conBit = 0; //количество проверочных битов
+                int chbit = 0; //чётный бит
                 for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))//заполнение контрольных битов нулями
                 {
              
@@ -43,10 +44,12 @@ namespace Hamming
                         }
                     ps++;
                     encode_mes[pb - 1] = cbit % 2;
+                    chbit = cbit % 2;
                     matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
                     matrixencode.Add(matrix);
                     cbit = 0;
                 }
+                matrixencode[matrixencode.Count-1].Insert(0, chbit % 2);
                 matrixencodefull.Add(matrixencode);
              }
             return matrixencodefull;
