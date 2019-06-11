@@ -280,6 +280,36 @@ namespace Hamming
             return strBitMask;
         }
 
+        public List<int> bit_even(List<int> without_even_bit)    ///////// ставит чётный бит 
+        {
+           List<int> for_even_bit = new List<int>(without_even_bit);
+           
+                int check = 0, position = 0, stepen = 0;
+
+                foreach (int element in for_even_bit)
+                {
+
+                    if (position == Convert.ToInt32(Math.Pow(2, stepen)) - 1)
+                    {
+                        stepen++;
+                        position++;
+                        continue;
+                    }
+                    else if (element == 1)
+                    {
+                        check++;
+                    }
+                    position++;
+                }
+                while (check > 1)
+                {
+                    check = check - 2;
+                }
+                for_even_bit.Insert(0, check);
+
+
+            return for_even_bit;
+        } 
     }
 
 }
