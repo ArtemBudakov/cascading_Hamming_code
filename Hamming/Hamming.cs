@@ -44,12 +44,18 @@ namespace Hamming
                         }
                     ps++;
                     encode_mes[pb - 1] = cbit % 2;
-                    chbit = cbit % 2;
                     matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
                     matrixencode.Add(matrix);
                     cbit = 0;
                 }
-                matrixencode[matrixencode.Count-1].Insert(0, chbit % 2);
+
+                matrix = new List<int>(matrixencode[matrixencode.Count - 1]); //новая строка порождающей матрицы
+               
+                foreach (int i in matrix)//вычисление чётного бита
+                    if (i == 1) chbit++;
+
+                matrix.Insert(0, chbit % 2);//вставка чётного бита
+                matrixencode.Add(matrix);
                 matrixencodefull.Add(matrixencode);
              }
             return matrixencodefull;
@@ -58,11 +64,11 @@ namespace Hamming
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
-            int cBit = Bitmask[0].Count()-1;
+            int cBit = Bitmask[0].Count()-2;//
             string strBitMask = "";
-            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы
+            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы строку счётным битом
             {
-                if(d==0)strBitMask = "Проверочная матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
                 else strBitMask = strBitMask + "\nbit(" + d + ")";
                 foreach (List<List<int>> s in Bitmask)
             {
@@ -85,6 +91,7 @@ namespace Hamming
                     }
                 }
             }
+            cBit++;//для вывода зашифрованного сообщения с чётным битом
             strBitMask = strBitMask + "\nЗашифрованное сообщение\n";
             foreach (List<List<int>> s in Bitmask) //вывод зашифрованного сообщения
             {
@@ -291,37 +298,6 @@ namespace Hamming
 
             return strBitMask;
         }
-
-        public List<int> bit_even(List<int> without_even_bit)    ///////// ставит чётный бит 
-        {
-           List<int> for_even_bit = new List<int>(without_even_bit);
-           
-                int check = 0, position = 0, stepen = 0;
-
-                foreach (int element in for_even_bit)
-                {
-
-                    if (position == Convert.ToInt32(Math.Pow(2, stepen)) - 1)
-                    {
-                        stepen++;
-                        position++;
-                        continue;
-                    }
-                    else if (element == 1)
-                    {
-                        check++;
-                    }
-                    position++;
-                }
-                while (check > 1)
-                {
-                    check = check - 2;
-                }
-                for_even_bit.Insert(0, check);
-
-
-            return for_even_bit;
-        } 
     }
 
 }
