@@ -13,7 +13,7 @@ namespace Hamming
         {
 
         }
-
+        //encoding
         public List<List<List<int>>> encoding (List<List<int>> Bitmask)//кодирует сообщение
         {
             List<List<List<int>>> matrixencodefull = new List<List<List<int>>>();//все матрицы сообщения
@@ -64,9 +64,9 @@ namespace Hamming
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
-            int cBit = Bitmask[0].Count()-2;//
+            int cBit = Bitmask[0].Count()-2;//игнорируем строку с счётным битом
             string strBitMask = "";
-            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы строку счётным битом
+            for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы 
             {
                 if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
                 else strBitMask = strBitMask + "\nbit(" + d + ")";
@@ -114,33 +114,11 @@ namespace Hamming
             return strBitMask;
         }
 
-        public List<int> decoding(List<int> Bitmask)
+        //decoding
+        public List<List<int>> decoding(List<List<int>> EncodeMess)
         {
-             List <int> mes =  new List<int> (Bitmask);
-             int i = 0, stepen = 0;
-             while (i == 0)
-             {
-             int a = mes.Count;
-             int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
-                 if (test_con_bit < 0)
-                 {
-                     stepen--;
-                     break;
-                 }
-             stepen++;
-             }
-             while (stepen >= 0)
-             {
-                 mes.RemoveAt(Convert.ToInt32(Math.Pow(2, stepen)) - 1);
-                 stepen--;
-             }
-            return mes;
-        }
-
-        public List<List<int>> error_correction(List<List<int>> fortest)
-        {
-            List<List<int>> error_new = new List<List<int>>();
-            foreach (List<int> second in fortest)
+            List<List<int>> Decodemes = new List<List<int>>(EncodeMess);
+            foreach (List<int> second in Decodemes)
             {
                 List<int> mes = new List<int>();
                 int lenth = 0;
