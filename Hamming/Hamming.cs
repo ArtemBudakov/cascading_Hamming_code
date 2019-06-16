@@ -13,7 +13,7 @@ namespace Hamming
 
         }
         //encoding
-        public List<List<List<int>>> encoding (List<List<int>> Bitmask)//кодирует сообщение
+        public List<List<List<int>>> encoding(List<List<int>> Bitmask)//кодирует сообщение
         {
             List<List<List<int>>> matrixencodefull = new List<List<List<int>>>();//все матрицы сообщения
             foreach (List<int> encode_mes in Bitmask)
@@ -28,7 +28,7 @@ namespace Hamming
                 matrixencode.Add(matrix);
                 int cbit = 0;  //значение проверочного бита
                 int ps = 0; //начальный проверочный бит
-                while (ps<=conBit-1)
+                while (ps <= conBit - 1)
                 {
                     int pb = (int)Math.Pow(2, ps); //степень двойки
                     for (int i = pb; i <= encode_mes.Count; i += pb)
@@ -45,28 +45,28 @@ namespace Hamming
                 }
 
                 matrix = new List<int>(matrixencode[matrixencode.Count - 1]); //новая строка порождающей матрицы
-               
+
                 foreach (int i in matrix)//вычисление чётного бита
                     if (i == 1) chbit++;
 
                 matrix.Insert(0, chbit % 2);//вставка чётного бита
                 matrixencode.Add(matrix);
                 matrixencodefull.Add(matrixencode);
-             }
+            }
             return matrixencodefull;
         }
 
         public string GetEncBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<List<int>>> Bitmask = encoding(Bitmaskmes);
-            int cBit = Bitmask[0].Count()-2;//игнорируем строку с счётным битом
+            int cBit = Bitmask[0].Count() - 2;//игнорируем строку с счётным битом
             string strBitMask = "";
             for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы 
             {
-                if(d==0)strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                if (d == 0) strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
                 else strBitMask = strBitMask + "\nbit(" + d + ")";
                 foreach (List<List<int>> s in Bitmask)
-            {
+                {
 
                     int db = 0; //номер необходимой строки
                     foreach (List<int> j in s)
@@ -112,14 +112,7 @@ namespace Hamming
         //decoding
         public List<List<int>> decoding(List<List<int>> EncodeMess)
         {
-            List<List<int>> Decodemes = new List<List<int>>();
-            Decodemes.CopyTo(EncodeMess);
-            EncodeMess.Clear();
-            EncodeMess.CopyTo(Decodemes);
-
-            /*List<int> oldList = new List<int>();
-            List<int> newList = new List<int>(oldList.Count);
-            oldList.ForEach((item) => { newList.Add((ICloneable)item.Clone()); });*/
+            List<List<int>> Decodemes = new List<List<int>>(EncodeMess);
 
             foreach (List<int> bit8 in Decodemes)
             {
@@ -129,9 +122,9 @@ namespace Hamming
                 bit8.RemoveAt(0);
                 int conBit = 0; //количество проверочных битов
                 for (int i = 1; i < bit8.Count; conBit++, i = (int)Math.Pow(2, conBit))//заполнение контрольных битов нулями
-                    bit8[i - 1]=0;
+                    bit8[i - 1] = 0;
 
-                while (ps <= conBit-1)
+                while (ps <= conBit - 1)
                 {
                     int pb = (int)Math.Pow(2, ps); //степень двойки
                     for (int i = pb; i <= bit8.Count; i += pb)
@@ -149,13 +142,13 @@ namespace Hamming
 
                 bit8.Insert(0, chbit % 2);//вставка чётного бита
             }
-            Decodemes = ErrorCorrection(Decodemes,EncodeMess);//получение 
-             return Decodemes;
+            Decodemes = ErrorCorrection(Decodemes, EncodeMess);//получение 
+            return Decodemes;
         }
         public List<List<int>> ErrorCorrection(List<List<int>> Decodemes, List<List<int>> EncodeMess)
         {
 
-            for (int i=0;i<= Decodemes.Count()-1;i++)
+            for (int i = 0; i <= Decodemes.Count() - 1; i++)
             {
                 int checkChbit = 0; //общая проверка
                 int сbit = 0; //синдром
@@ -184,14 +177,14 @@ namespace Hamming
             foreach (List<int> i in Bitmask)
             {
                 int st = 0;
-                int pb,ind = 1;
+                int pb, ind = 1;
                 foreach (int j in i)
                 {
                     pb = (int)Math.Pow(2, st);
                     if (ind == pb)
                     {
-                       st++;
-                       ind++;
+                        st++;
+                        ind++;
                         continue;
                     }
                     strBitMask = strBitMask + j;
@@ -206,5 +199,6 @@ namespace Hamming
     }
 
 }
+
 
  
