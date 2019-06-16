@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Hamming
 {
@@ -111,14 +112,21 @@ namespace Hamming
         //decoding
         public List<List<int>> decoding(List<List<int>> EncodeMess)
         {
-            List<List<int>> Decodemes = new List<List<int>>(EncodeMess);
+            List<List<int>> Decodemes = new List<List<int>>();
+            Decodemes.CopyTo(EncodeMess);
+            EncodeMess.Clear();
+            EncodeMess.CopyTo(Decodemes);
+
+            /*List<int> oldList = new List<int>();
+            List<int> newList = new List<int>(oldList.Count);
+            oldList.ForEach((item) => { newList.Add((ICloneable)item.Clone()); });*/
+
             foreach (List<int> bit8 in Decodemes)
             {
                 int cbit = 0;  //значение проверочного бита
                 int ps = 0; //начальный проверочный бит
                 int chbit = bit8[0]; //чётный бит
                 bit8.RemoveAt(0);
-                int j = 0;
                 int conBit = 0; //количество проверочных битов
                 for (int i = 1; i < bit8.Count; conBit++, i = (int)Math.Pow(2, conBit))//заполнение контрольных битов нулями
                     bit8[i - 1]=0;
@@ -141,47 +149,26 @@ namespace Hamming
 
                 bit8.Insert(0, chbit % 2);//вставка чётного бита
             }
-
-                     //////////////// сверяем проверочные биты для поиска ошибки (по индексу)
-                   /*  int control_sum = 0;
-                     stepen = starshaya_stepen;
-                     while (stepen >= 0)
-                     {
-                         check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
-                         if (check_bit == error[Convert.ToInt32(Math.Pow(2, stepen)) - 1])
-                         {
-                             stepen--;
-                             continue;
-                         }
-                         else
-                         {
-                             control_sum = control_sum + Convert.ToInt32(Math.Pow(2, stepen));
-                             stepen--;
-                         }
-                     }
-
-                     //////////////////////// исправляем ошибку по найденному индексу
-
-                     if (control_sum != 0)
-                     {
-                         check_bit = error[control_sum - 1];
-                         if (check_bit == 0)
-                         {
-                             error.Insert(control_sum - 1, 1);
-                             error.RemoveAt(control_sum);
-                         }
-                         else
-                         {
-                             error.Insert(control_sum - 1, 0);
-                             error.RemoveAt(control_sum);
-                         }
-
-                     }
-                 error_new.Add(error);*/
-
+            Decodemes = ErrorCorrection(Decodemes,EncodeMess);//получение 
              return Decodemes;
         }
+        public List<List<int>> ErrorCorrection(List<List<int>> Decodemes, List<List<int>> EncodeMess)
+        {
 
+            for (int i=0;i<= Decodemes.Count()-1;i++)
+            {
+                int checkChbit = 0; //общая проверка
+                int сbit = 0; //синдром
+                List<int> decode = Decodemes[i];
+                List<int> encode = EncodeMess[i];
+                if (decode[0] != encode[0]) checkChbit++;//общая проверка если 1 то ошибка есть
+
+                decode.RemoveAt(0);
+
+            }
+
+            return Decodemes;
+        }
         public string GetDecBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<int>> Bitmask = decoding(Bitmaskmes);
