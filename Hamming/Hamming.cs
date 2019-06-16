@@ -110,9 +110,8 @@ namespace Hamming
         }
 
         //decoding
-        public List<List<int>> decoding(List<List<int>> EncodeMess)
+        public List<List<int>> decoding(List<List<int>> Decodemes, List<List<int>> EncodeMess)
         {
-            List<List<int>> Decodemes = new List<List<int>>(EncodeMess);
 
             foreach (List<int> bit8 in Decodemes)
             {
@@ -148,23 +147,36 @@ namespace Hamming
         public List<List<int>> ErrorCorrection(List<List<int>> Decodemes, List<List<int>> EncodeMess)
         {
 
-            for (int i = 0; i <= Decodemes.Count() - 1; i++)
+            for (int i = 0; i < Decodemes.Count(); i++)
             {
                 int checkChbit = 0; //общая проверка
-                int сbit = 0; //синдром
                 List<int> decode = Decodemes[i];
                 List<int> encode = EncodeMess[i];
                 if (decode[0] != encode[0]) checkChbit++;//общая проверка если 1 то ошибка есть
-
                 decode.RemoveAt(0);
+                encode.RemoveAt(0);
+                int conBit = 0; //количество проверочных битов
+                int erBit = 0;
+                for (int j = 1; j < decode.Count(); conBit++, j = (int)Math.Pow(2, conBit))//нахождение места одиночной ошибки
+                {
+                    if (decode[j-1] != encode[j-1]) erBit += j;
+                }
+
+                if(((checkChbit ==0) && (erBit == 0))||((checkChbit != 0) && (erBit != 0)))//исправление одиночной ошибки
+                 {
+                    if (erBit == 0) continue;
+                    if (decode[erBit - 1] == 1) decode[erBit - 1] = 0;
+                    else decode[erBit - 1] = 1;
+                 }
+                else Decodemes.RemoveAt(i);//стирание при двойной ошибке
 
             }
 
             return Decodemes;
         }
-        public string GetDecBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
+        public string GetDecBitMaskToStr(List<List<int>> Decodemes, List<List<int>> EncodeMess) //пребразует сообщение в биты и возвращает в виде строки
         {
-            List<List<int>> Bitmask = decoding(Bitmaskmes);
+            List<List<int>> Bitmask = decoding(Decodemes, EncodeMess);
             string strBitMask = "";
             strBitMask = strBitMask + "Исправление ошибок\n";
             foreach (List<int> i in Bitmask)
