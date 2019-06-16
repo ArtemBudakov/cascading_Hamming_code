@@ -162,13 +162,18 @@ namespace Hamming
                     if (decode[j-1] != encode[j-1]) erBit += j;
                 }
 
-                if(((checkChbit ==0) && (erBit == 0))||((checkChbit != 0) && (erBit != 0)))//исправление одиночной ошибки
-                 {
+                if (((checkChbit == 0) && (erBit == 0)) || ((checkChbit != 0) && (erBit != 0)))//исправление одиночной ошибки
+                {
                     if (erBit == 0) continue;
                     if (decode[erBit - 1] == 1) decode[erBit - 1] = 0;
                     else decode[erBit - 1] = 1;
-                 }
-                else Decodemes.RemoveAt(i);//стирание при двойной ошибке
+                }
+                else
+                {
+                    //Decodemes.RemoveAt(i);//стирание при двойной ошибке
+                    for (int h = 0; h < decode.Count(); h++) decode[h] = 8;
+
+                }
 
             }
 
@@ -204,6 +209,7 @@ namespace Hamming
                 }
                 strBitMask = strBitMask + "##";
             }
+            strBitMask = strBitMask.Replace("8", "X");
 
 
             return strBitMask;
