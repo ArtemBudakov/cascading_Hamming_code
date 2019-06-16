@@ -63,12 +63,12 @@ namespace Hamming
 
                     while (message.Length > 1)
                     {
-                        List<int> bit7 = new List<int>();
+                        List<int> bit8 = new List<int>();
 
-                        for (int j = 0; j < 7; j++)
-                            bit7.Add((int)Char.GetNumericValue(message[j]));
-                        Bitmask.Add(bit7);
-                        message = message.Substring(7);
+                        for (int j = 0; j < 8; j++)
+                            bit8.Add((int)Char.GetNumericValue(message[j]));
+                        Bitmask.Add(bit8);
+                        message = message.Substring(8);
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace Hamming
 
         public string Get_correction_mask(string matrix)
         {
-            for(int i = 7; i < matrix.Length; i+=9)
+            for(int i = 8; i < matrix.Length; i+=10)
             {
                 matrix = matrix.Insert(i, "##");
             }

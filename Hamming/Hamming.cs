@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Linq;
 
 namespace Hamming
@@ -8,7 +7,6 @@ namespace Hamming
     class Hamming
     {
 
-        int starshaya_stepen;
         public Hamming()
         {
 
@@ -20,15 +18,11 @@ namespace Hamming
             foreach (List<int> encode_mes in Bitmask)
             {
                 List<List<int>> matrixencode = new List<List<int>>(); // порождающая матрица
-                int j = 0;
                 int conBit = 0; //количество проверочных битов
                 int chbit = 0; //чётный бит
-                for (int i = 1; i < encode_mes.Count; j++, i = (int)Math.Pow(2, j))//заполнение контрольных битов нулями
-                {
-             
+                for (int i = 1; i < encode_mes.Count; conBit++, i = (int)Math.Pow(2, conBit))//заполнение контрольных битов нулями
                     encode_mes.Insert(i - 1, 0);
-                    conBit++;
-                }
+
                 List<int> matrix = new List<int>(encode_mes); //новая строка порождающей матрицы
                 matrixencode.Add(matrix);
                 int cbit = 0;  //значение проверочного бита
@@ -118,133 +112,79 @@ namespace Hamming
         public List<List<int>> decoding(List<List<int>> EncodeMess)
         {
             List<List<int>> Decodemes = new List<List<int>>(EncodeMess);
-            foreach (List<int> second in Decodemes)
+            foreach (List<int> bit8 in Decodemes)
             {
-                List<int> mes = new List<int>();
-                int lenth = 0;
-                foreach (int first in second)
+                int cbit = 0;  //значение проверочного бита
+                int ps = 0; //начальный проверочный бит
+                int chbit = bit8[0]; //чётный бит
+                bit8.RemoveAt(0);
+                int j = 0;
+                int conBit = 0; //количество проверочных битов
+                for (int i = 1; i < bit8.Count; conBit++, i = (int)Math.Pow(2, conBit))//заполнение контрольных битов нулями
+                    bit8[i - 1]=0;
+
+                while (ps <= conBit-1)
                 {
-                    mes.Insert(lenth, first);
-                    lenth++;
+                    int pb = (int)Math.Pow(2, ps); //степень двойки
+                    for (int i = pb; i <= bit8.Count; i += pb)
+                        for (int p = 1; p <= pb; p++, i++)
+                        {
+                            if (i > bit8.Count) break;
+                            cbit += bit8[i - 1];
+                        }
+                    ps++;
+                    bit8[pb - 1] = cbit % 2;//синдром
+                    cbit = 0;
                 }
+                foreach (int i in bit8)//вычисление чётного бита
+                    if (i == 1) chbit++;
 
-                List<int> check_bits_start = new List<int>();
-                List<int> check_bits_error = new List<int>();
-                int check_bit;
-                starshaya_stepen = 0;
-                try
-                {
-                    ///////////////// смотрю какая степень 2ки максимальная
-                    int i = 0, stepen = 0;
-                    while (i == 0)
-                    {
-                        int a = mes.Count;
-                        int test_con_bit = a - Convert.ToInt32(Math.Pow(2, stepen));
-                        if (test_con_bit < 0)
-                        {
-                            stepen--;
-                            starshaya_stepen = stepen;
-                            break;
-                        }
-                        stepen++;
-                    }
-                    //////////////////////// забираю все информационные биты
-                    while (stepen >= 0)
-                    {
-                        check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
-                        stepen--;
-                        //MessageBox.Show(Convert.ToString(check_bit));
-                        check_bits_start.Insert(0, check_bit);
-                    }
-                    //вызываем метод decoder который вернёт нам исходную строку
-                    Hamming ham_dec_for_error = new Hamming();
-                    List<int> error = ham_dec_for_error.decoding(mes);
+                bit8.Insert(0, chbit % 2);//вставка чётного бита
+            }
 
-                    ///////////// расставление проверочных бит для сообщения с ошибкой
-                    int j = 0, conBit = -1;
-                    //// encode for one list
-                    for (int z = 1; z < error.Count; j++, z = (int)Math.Pow(2, j))
-                    {
+                     //////////////// сверяем проверочные биты для поиска ошибки (по индексу)
+                   /*  int control_sum = 0;
+                     stepen = starshaya_stepen;
+                     while (stepen >= 0)
+                     {
+                         check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
+                         if (check_bit == error[Convert.ToInt32(Math.Pow(2, stepen)) - 1])
+                         {
+                             stepen--;
+                             continue;
+                         }
+                         else
+                         {
+                             control_sum = control_sum + Convert.ToInt32(Math.Pow(2, stepen));
+                             stepen--;
+                         }
+                     }
 
-                        error.Insert(z - 1, 0);
-                        conBit++;
-                    }
+                     //////////////////////// исправляем ошибку по найденному индексу
 
-                    int cbit = 0;
+                     if (control_sum != 0)
+                     {
+                         check_bit = error[control_sum - 1];
+                         if (check_bit == 0)
+                         {
+                             error.Insert(control_sum - 1, 1);
+                             error.RemoveAt(control_sum);
+                         }
+                         else
+                         {
+                             error.Insert(control_sum - 1, 0);
+                             error.RemoveAt(control_sum);
+                         }
 
-                    while (conBit >= 0)
-                    {
-                        int pb = (int)Math.Pow(2, conBit);
-                        for (int k = pb; k <= error.Count; k += pb)
-                            for (int p = 1; p <= pb; p++, k++)
-                            {
-                                cbit += error[k - 1];
-                            }
-                        conBit--;
-                        error[pb - 1] = cbit % 2;
-                        cbit = 0;
-                    }
-                    //// encode for one list
-                    //////////////////// забираю проверочные биты сообщения с ошибкой
-                    stepen = starshaya_stepen;
-                    while (stepen >= 0)
-                    {
-                        check_bit = error[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
-                        stepen--;
-                        //MessageBox.Show(Convert.ToString(check_bit));
-                        check_bits_error.Insert(0, check_bit);
-                    }
-                    //////////////// сверяем проверочные биты для поиска ошибки (по индексу)
-                    int control_sum = 0;
-                    stepen = starshaya_stepen;
-                    while (stepen >= 0)
-                    {
-                        check_bit = mes[Convert.ToInt32(Math.Pow(2, stepen)) - 1];
-                        if (check_bit == error[Convert.ToInt32(Math.Pow(2, stepen)) - 1])
-                        {
-                            stepen--;
-                            continue;
-                        }
-                        else
-                        {
-                            control_sum = control_sum + Convert.ToInt32(Math.Pow(2, stepen));
-                            stepen--;
-                        }
-                    }
+                     }
+                 error_new.Add(error);*/
 
-                    //////////////////////// исправляем ошибку по найденному индексу
-
-                    if (control_sum != 0)
-                    {
-                        check_bit = error[control_sum - 1];
-                        if (check_bit == 0)
-                        {
-                            error.Insert(control_sum - 1, 1);
-                            error.RemoveAt(control_sum);
-                        }
-                        else
-                        {
-                            error.Insert(control_sum - 1, 0);
-                            error.RemoveAt(control_sum);
-                        }
-
-                    }
-                error_new.Add(error);
-                }
-                catch
-                {
-                    List<int> XXX = new List<int>(Convert.ToInt32("88888888"));
-                    error_new.Add(XXX);
-                }
-                
-
-            }            
-            return error_new;
+             return Decodemes;
         }
 
         public string GetDecBitMaskToStr(List<List<int>> Bitmaskmes) //пребразует сообщение в биты и возвращает в виде строки
         {
-            List<List<int>> Bitmask = error_correction(Bitmaskmes);
+            List<List<int>> Bitmask = decoding(Bitmaskmes);
             string strBitMask = "";
             strBitMask = strBitMask + "Исправление ошибок\n";
             foreach (List<int> i in Bitmask)
