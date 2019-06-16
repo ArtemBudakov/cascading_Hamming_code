@@ -117,7 +117,7 @@ namespace Hamming
             {
                 int cbit = 0;  //значение проверочного бита
                 int ps = 0; //начальный проверочный бит
-                int chbit = bit8[0]; //чётный бит
+                int chbit = 0; //чётный бит
                 bit8.RemoveAt(0);
                 int conBit = 0; //количество проверочных битов
                 for (int i = 1; i < bit8.Count; conBit++, i = (int)Math.Pow(2, conBit))//заполнение контрольных битов нулями
@@ -136,8 +136,8 @@ namespace Hamming
                     bit8[pb - 1] = cbit % 2;//синдром
                     cbit = 0;
                 }
-                foreach (int i in bit8)//вычисление чётного бита
-                    if (i == 1) chbit++;
+                foreach (int j in bit8)//вычисление чётного бита
+                    if (j == 1) chbit++;
 
                 bit8.Insert(0, chbit % 2);//вставка чётного бита
             }
