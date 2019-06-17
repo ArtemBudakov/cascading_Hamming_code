@@ -27,3 +27,13 @@ C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.CoreCompileInputs.ca
 C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.exe
 C:\GIT\cascading_Hamming_code\Hamming\obj\Debug\Hamm.pdb
 H:\учёба\Беззатеев\Хэмминг\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamm.exe.config
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamm.exe
+E:\Max\cascading_Hamming_code\Hamming\bin\Debug\Hamm.pdb
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csprojAssemblyReference.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamming.Form1.resources
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.Properties.Resources.resources
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.GenerateResource.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.csproj.CoreCompileInputs.cache
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.exe
+E:\Max\cascading_Hamming_code\Hamming\obj\Debug\Hamm.pdb
