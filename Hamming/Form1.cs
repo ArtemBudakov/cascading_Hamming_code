@@ -60,6 +60,12 @@ namespace Hamming
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int i = RS_multi.alfa(2, 1);
+            MessageBox.Show(i.ToString());
+        }
     }
 }
 
