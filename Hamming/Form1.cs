@@ -24,7 +24,7 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var source = textBox1.Text.Trim();
+            var source = Input.Text.Trim();
             if (source.Length != 7)
             {
                 Disappoint("Введите строку длиной 7 символов!");
@@ -34,14 +34,16 @@ namespace Hamming
             try
             {
                 var hex = new HexArray(source);
-                var encoded = Galua16.Encode(hex.Array);
+                var encoded = RSCoder.Encode(hex.Array);
                 var encodedHex = new HexArray(encoded);
-                richTextBox1.Text = encodedHex.String;
-                MessageBox.Show(encodedHex.String, "Код", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //Hamming hamm = new Hamming();
-                //conversion bitMask = new conversion();
-                //richTextBox1.Text = "Исходное сообщение: " + textBox1.Text + "\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
-                //richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(textBox1.Text));//закодированное сообщение
+                string res = encodedHex.String;
+                hex = new HexArray(res);
+                Hamming hamm = new Hamming();
+                conversion bitMask = new conversion();
+                richTextBox1.Text = "Исходное сообщение: " + Input.Text + "\n"+
+                   "код Рида-Соломона: " + encodedHex.String + "\n" +
+                   bitMask.GetbitmaskToStr(hex.Array) + "\n";//начальное сообщение
+                richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(hex.Array));//закодированное сообщение
             }
             catch (ArgumentException argumentException)
             {

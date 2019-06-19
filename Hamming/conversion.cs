@@ -12,7 +12,7 @@ namespace Hamming
         {
 
         }
-        public List<List<int>> GetBitMask(string message) //пребразует сообщение в биты и возвращает в виде List<List<int>> 
+        public List<List<int>> GetBitMask(int[] message) //пребразует сообщение в биты и возвращает в виде List<List<int>> 
         {
             string Bitmessage = "";
             List<List<int>> Bitmask = new List<List<int>>();
@@ -20,23 +20,22 @@ namespace Hamming
             {
                 Bitmessage += Convert.ToString(message[i], 2);
 
-                while (Bitmessage.Length < 8)
+                while (Bitmessage.Length < 4)
                     Bitmessage = String.Concat('0', Bitmessage);
 
-                while (Bitmessage.Length > 1)
-                {
-                    List<int> bit4 = new List<int>();
+                List<int> bit4 = new List<int>();
 
                     for (int j = 0; j < 4; j++)
                         bit4.Add((int)Char.GetNumericValue(Bitmessage[j]));
 
                     Bitmask.Add(bit4);
-                    Bitmessage = Bitmessage.Substring(4);
-                }
+                Bitmessage = "";
+
+
             }
             return Bitmask;
         }
-        public string GetbitmaskToStr(string message) //пребразует сообщение в биты и возвращает в виде строки
+        public string GetbitmaskToStr(int[] message) //пребразует сообщение в биты и возвращает в виде строки
         {
             List<List<int>> Bitmask = GetBitMask(message);
             string strBitMask = "          ";

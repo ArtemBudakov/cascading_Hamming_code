@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -36,15 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Input = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(106, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // button1
             // 
@@ -70,14 +62,14 @@
             this.richTextBox1.Location = new System.Drawing.Point(141, 12);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(647, 139);
+            this.richTextBox1.Size = new System.Drawing.Size(647, 158);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             this.richTextBox1.WordWrap = false;
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(141, 176);
+            this.richTextBox2.Location = new System.Drawing.Point(141, 186);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(647, 139);
@@ -87,7 +79,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(13, 155);
+            this.label2.Location = new System.Drawing.Point(13, 191);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 28);
             this.label2.TabIndex = 8;
@@ -95,7 +87,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(16, 212);
+            this.button2.Location = new System.Drawing.Point(16, 248);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 23);
             this.button2.TabIndex = 7;
@@ -105,17 +97,26 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 186);
+            this.textBox2.Location = new System.Drawing.Point(16, 222);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(106, 20);
             this.textBox2.TabIndex = 6;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
+            // Input
+            // 
+            this.Input.Location = new System.Drawing.Point(41, 41);
+            this.Input.Mask = "AAAAAAA";
+            this.Input.Name = "Input";
+            this.Input.Size = new System.Drawing.Size(51, 20);
+            this.Input.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 335);
+            this.ClientSize = new System.Drawing.Size(800, 354);
+            this.Controls.Add(this.Input);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
@@ -123,7 +124,6 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Код Хэмминга (7; 4)";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -133,8 +133,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -142,6 +140,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.MaskedTextBox Input;
     }
 }
 

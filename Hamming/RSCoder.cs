@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Security.Principal;
 
-    static class Galua16
+    static class RSCoder
     {
 
         const int Generator = 2;
@@ -79,7 +79,7 @@
         public static readonly int[,] DecoderMatrix;
         public static readonly int[,] EncoderMatrix;
 
-        static Galua16()
+        static RSCoder()
         {
             AddTable = new int[GaluaSize - 1, GaluaSize - 1];
             MultTable = new int[GaluaSize - 1, GaluaSize - 1];
