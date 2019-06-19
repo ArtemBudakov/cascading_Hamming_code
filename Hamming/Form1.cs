@@ -24,14 +24,30 @@ namespace Hamming
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            var source = textBox1.Text.Trim();
+            if (source.Length != 7)
             {
-                Hamming hamm = new Hamming();
-                conversion bitMask = new conversion();
-                richTextBox1.Text = "Исходное сообщение: " + textBox1.Text + "\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
-                richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(textBox1.Text));//закодированное сообщение
+                Disappoint("Введите строку длиной 7 символов!");
+                return;
             }
-            else MessageBox.Show("введите сообшение");
+
+            try
+            {
+                var hex = new HexArray(source);
+                var encoded = Galua16.Encode(hex.Array);
+                var encodedHex = new HexArray(encoded);
+                richTextBox1.Text = encodedHex.String;
+                MessageBox.Show(encodedHex.String, "Код", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Hamming hamm = new Hamming();
+                //conversion bitMask = new conversion();
+                //richTextBox1.Text = "Исходное сообщение: " + textBox1.Text + "\n" + bitMask.GetbitmaskToStr(textBox1.Text) + "\n";//начальное сообщение
+                //richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(textBox1.Text));//закодированное сообщение
+            }
+            catch (ArgumentException argumentException)
+            {
+                Disappoint(argumentException.Message);
+            }
+
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -55,17 +71,11 @@ namespace Hamming
         {
             //if (!(e.KeyChar == 48 || e.KeyChar == 49 || e.KeyChar == 8)) { e.Handled = true; }
         }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        void Disappoint(string message)
         {
-
+            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            int i = RS_multi.alfa(2, 1);
-            MessageBox.Show(i.ToString());
-        }
     }
 }
 
