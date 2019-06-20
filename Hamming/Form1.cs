@@ -40,7 +40,7 @@ namespace Hamming
                 hex = new HexArray(res);
                 Hamming hamm = new Hamming();
                 conversion bitMask = new conversion();
-                richTextBox1.Text = "Исходное сообщение: " + Input.Text + "\n"+
+                richTextBox1.Text = "Исходное сообщение: " + Input.Text.ToUpper() + "\n"+
                    "код Рида-Соломона: " + encodedHex.String + "\n" +
                    bitMask.GetbitmaskToStr(hex.Array) + "\n";//начальное сообщение
                 richTextBox1.Text = richTextBox1.Text + hamm.GetEncBitMaskToStr(bitMask.GetBitMask(hex.Array));//закодированное сообщение
@@ -65,7 +65,7 @@ namespace Hamming
                 conversion bitMask = new conversion();
                 richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
                 richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text)) +
-                    "\n" + "Зашифрованое сообщение Кода Рида-Соломона " + bitMask.from2to10(hamm.decoding(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text))) + "\n" + "Исходное сообщение ";
+                    "\n" + "Зашифрованое сообщение Кода Рида-Соломона " + bitMask.from2to10(hamm.decoding(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text))).ToUpper() + "\n" + "Исходное сообщение ";
 
                 try
                 {
@@ -74,7 +74,7 @@ namespace Hamming
                     var hex = new HexArray(code);
                     var decoded = RSCoder.Decode(hex.Array, erased);
                     var decodedHex = new HexArray(decoded);
-                    richTextBox2.Text = richTextBox2.Text + decodedHex.String;
+                    richTextBox2.Text = richTextBox2.Text + decodedHex.String.ToUpper();
                 }
                 catch (ArgumentException argumentException)
                 {
