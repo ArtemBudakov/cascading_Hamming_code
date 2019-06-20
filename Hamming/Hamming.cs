@@ -64,7 +64,7 @@ namespace Hamming
             string strBitMask = "";
             for (int d = 0; d <= cBit; d++) //вывод порождающей матрицы 
             {
-                if (d == 0) strBitMask = "Порождающая матрица\n" + "bit(" + cBit + ")" + strBitMask;
+                if (d == 0) strBitMask = "Порождающая матрица кода Хэмминга\n" + "bit(" + cBit + ")" + strBitMask;
                 else strBitMask = strBitMask + "\nbit(" + d + ")";
                 foreach (List<List<int>> s in Bitmask)
                 {
