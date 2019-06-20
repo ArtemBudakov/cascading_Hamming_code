@@ -36,7 +36,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.Input = new System.Windows.Forms.MaskedTextBox();
-            this.Input2 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -98,7 +97,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 168);
+            this.textBox2.Location = new System.Drawing.Point(16, 222);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(106, 20);
             this.textBox2.TabIndex = 6;
@@ -112,20 +111,11 @@
             this.Input.Size = new System.Drawing.Size(51, 20);
             this.Input.TabIndex = 10;
             // 
-            // Input2
-            // 
-            this.Input2.Location = new System.Drawing.Point(16, 222);
-            this.Input2.Mask = "AAAAAAAAAAAAAAA";
-            this.Input2.Name = "Input2";
-            this.Input2.Size = new System.Drawing.Size(106, 20);
-            this.Input2.TabIndex = 11;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 354);
-            this.Controls.Add(this.Input2);
             this.Controls.Add(this.Input);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label2);
@@ -151,7 +141,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.MaskedTextBox Input;
-        private System.Windows.Forms.MaskedTextBox Input2;
     }
 }
 

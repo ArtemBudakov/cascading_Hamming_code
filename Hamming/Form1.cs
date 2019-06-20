@@ -59,19 +59,31 @@ namespace Hamming
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var source = Input2.Text.Trim();
-            if (source.Length != 15)
+            if (textBox2.Text != "")
             {
-                Disappoint("Введите 15 шестнадцатиричных значений!");
-                return;
+                Hamming hamm = new Hamming();
+                conversion bitMask = new conversion();
+                richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
+                richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text)) +
+                    "\n" + "Зашифрованое сообщение Кода Рида-Соломона " + bitMask.from2to10(hamm.decoding(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text))) + "\n" + "Исходное сообщение ";
+
+                try
+                {
+                    var erased = hamm.rs_errors;
+                    var code = bitMask.from2to10(hamm.decoding(bitMask.Mask_decoding(textBox2.Text), bitMask.Mask_decoding(textBox2.Text)));
+                    var hex = new HexArray(code);
+                    var decoded = RSCoder.Decode(hex.Array, erased);
+                    var decodedHex = new HexArray(decoded);
+                    richTextBox2.Text = richTextBox2.Text + decodedHex.String;
+                }
+                catch (ArgumentException argumentException)
+                {
+                    Disappoint(argumentException.Message);
+                }
+
+
             }
-
-            var hex = new HexArray(source);
-            //Hamming hamm = new Hamming();
-            //conversion bitMask = new conversion();
-            //richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
-            //richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text),bitMask.Mask_decoding(textBox2.Text));
-
+            else MessageBox.Show("введите сообшение");
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)

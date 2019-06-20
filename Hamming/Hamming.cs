@@ -8,6 +8,7 @@ namespace Hamming
     class Hamming
     {
 
+        public bool [] rs_errors = new bool [15];
         public Hamming()
         {
 
@@ -172,6 +173,7 @@ namespace Hamming
                 {
                     //Decodemes.RemoveAt(i);//стирание при двойной ошибке
                     for (int h = 0; h < decode.Count(); h++) decode[h] = 8;
+                    rs_errors[i] = true;
 
                 }
 

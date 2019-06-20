@@ -7,7 +7,25 @@ namespace Hamming
 
     public class conversion
     {
-
+        static readonly Dictionary<char, int> HexMap = new Dictionary<char, int>
+        {
+            ['0'] = 0,
+            ['1'] = 1,
+            ['2'] = 2,
+            ['3'] = 3,
+            ['4'] = 4,
+            ['5'] = 5,
+            ['6'] = 6,
+            ['7'] = 7,
+            ['8'] = 8,
+            ['9'] = 9,
+            ['A'] = 10,
+            ['B'] = 11,
+            ['C'] = 12,
+            ['D'] = 13,
+            ['E'] = 14,
+            ['F'] = 15,
+        };
         public conversion()
         {
 
@@ -94,6 +112,51 @@ namespace Hamming
             }
             matrix = matrix + "##";
             return matrix;
+        }
+
+        public string from2to10(List<List<int>> mes)
+        {
+            int[] complite = new int[15];
+            string progress = "";
+            int for_convert, p=0;
+            foreach (List<int> i in mes)
+            {
+                int pb, st = 0, ind = 1;
+                progress = "";
+                foreach (int j in i)
+                {
+                    pb = (int)Math.Pow(2, st);
+                    if (ind == pb)
+                    {
+                        st++;
+                        ind++;
+                        continue;
+                    }
+                    progress += Convert.ToString(j);
+                    ind++;
+                }
+                try
+                {
+                    for_convert = Convert.ToInt32(progress, 2);
+                    complite[p] = for_convert;
+                    p++;
+                }
+                catch
+                {
+                    for_convert = 0;
+                    complite[p] = for_convert;
+                    p++;
+                }
+
+            }
+            string solomon_string = "";
+            p = 0;
+            while (p < complite.Length)
+            {
+                solomon_string += Convert.ToString(complite[p], 16);
+                p++;
+            }
+            return solomon_string;
         }
 
     }
