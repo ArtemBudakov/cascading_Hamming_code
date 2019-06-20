@@ -59,14 +59,19 @@ namespace Hamming
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != "")
+            var source = Input2.Text.Trim();
+            if (source.Length != 15)
             {
-                Hamming hamm = new Hamming();
-                conversion bitMask = new conversion();
-                richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
-                richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text),bitMask.Mask_decoding(textBox2.Text));
+                Disappoint("Введите 15 шестнадцатиричных значений!");
+                return;
             }
-            else MessageBox.Show("введите сообшение");
+
+            var hex = new HexArray(source);
+            //Hamming hamm = new Hamming();
+            //conversion bitMask = new conversion();
+            //richTextBox2.Text = "Исходное сообщение: " + "\n" + bitMask.Get_correction_mask(textBox2.Text) + "\n";//начальное сообщение
+            //richTextBox2.Text = richTextBox2.Text + hamm.GetDecBitMaskToStr(bitMask.Mask_decoding(textBox2.Text),bitMask.Mask_decoding(textBox2.Text));
+
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
